@@ -1,0 +1,318 @@
+# -----------
+# 실습 예제 1
+# -----------
+import pandas as pd
+
+titanic_df = pd.read_csv('./train.csv')
+print('titanic 변수 type:',type(titanic_df))
+print('1.---------------------------------------------------')
+print(titanic_df)
+print('2.---------------------------------------------------')
+print(titanic_df.head(3))
+print('3.---------------------------------------------------')
+print('DataFrame 크기: ', titanic_df.shape)
+print('4.---------------------------------------------------')
+print(titanic_df.describe())
+print('5.---------------------------------------------------')
+value_counts = titanic_df['Pclass'].value_counts()
+print(value_counts)
+print('6.---------------------------------------------------')
+titanic_pclass = titanic_df['Pclass']
+print(type(titanic_pclass))
+print('7.---------------------------------------------------')
+titanic_pclass.head()
+print('8.---------------------------------------------------')
+value_counts = titanic_df['Pclass'].value_counts()
+print(type(value_counts))
+print(value_counts)
+
+
+# -----------
+# 실습 예제 2
+# -----------
+import pandas as pd
+import numpy as np
+
+col_name1=['col1']
+list1 = [1, 2, 3]
+array1 = np.array(list1)
+
+print('array1 shape:', array1.shape )
+print('1.---------------------------------------------------')
+df_list1 = pd.DataFrame(list1, columns=col_name1)
+print('1차원 리스트로 만든 DataFrame:\n', df_list1)
+print('2.---------------------------------------------------')
+df_array1 = pd.DataFrame(array1, columns=col_name1)
+print('1차원 ndarray로 만든 DataFrame:\n', df_array1)
+print('3.---------------------------------------------------')
+col_name2=['col1', 'col2', 'col3']
+
+list2 = [[1, 2, 3],
+         [11, 12, 13]]
+array2 = np.array(list2)
+print('array2 shape:', array2.shape )
+print('4.---------------------------------------------------')
+df_list2 = pd.DataFrame(list2, columns=col_name2)
+print('2차원 리스트로 만든 DataFrame:\n', df_list2)
+print('5.---------------------------------------------------')
+df_array2 = pd.DataFrame(array2, columns=col_name2)
+print('2차원 ndarray로 만든 DataFrame:\n', df_array2)
+print('6.---------------------------------------------------')
+dict = {'col1':[1, 11], 'col2':[2, 22], 'col3':[3, 33]}
+df_dict = pd.DataFrame(dict)
+print('딕셔너리로 만든 DataFrame:\n', df_dict)
+print('7.---------------------------------------------------')
+array3 = df_dict.values
+print('df_dict.values 타입:', type(array3), 'df_dict.values shape:', array3.shape)
+print(array3)
+print('8.---------------------------------------------------')
+list3 = df_dict.values.tolist()
+print('df_dict.values.tolist() 타입:', type(list3))
+print(list3)
+print('9.---------------------------------------------------')
+dict3 = df_dict.to_dict('list')
+print('\n df_dict.to_dict() 타입:', type(dict3))
+print(dict3)
+
+
+# -----------
+# 실습 예제 3
+# -----------
+import pandas as pd
+
+titanic_df = pd.read_csv('./titanic/train.csv')
+titanic_df['Age_0']=0
+print(titanic_df.head(3))
+print('1.---------------------------------------------------')
+titanic_df['Age_by_10'] = titanic_df['Age']*10
+titanic_df['Family_No'] = titanic_df['SibSp'] + titanic_df['Parch']+1
+print(titanic_df.head(3))
+print('2.---------------------------------------------------')
+titanic_df['Age_by_10'] = titanic_df['Age_by_10'] + 100
+print(titanic_df.head(3))
+print('3.---------------------------------------------------')
+titanic_drop_df = titanic_df.drop('Age_0', axis=1 )
+print(titanic_drop_df.head(3))
+print('4.---------------------------------------------------')
+print(titanic_df.head(3))
+print('5.---------------------------------------------------')
+drop_result = titanic_df.drop(['Age_0', 'Age_by_10', 'Family_No'], axis=1, inplace=True)
+print(' inplace=True 로 drop 후 반환된 값:',drop_result)
+print(titanic_df.head(3))
+print(drop_result)
+print('6.---------------------------------------------------')
+pd.set_option('display.width', 1000)
+pd.set_option('display.max_colwidth', 15)
+print('#### before axis 0 drop ####')
+print(titanic_df.head(3))
+titanic_df.drop([0,1,2], axis=0, inplace=True)
+print('#### after axis 0 drop ####')
+print(titanic_df.head(3))
+
+
+# -----------
+# 실습 예제 4
+# -----------
+import pandas as pd
+
+titanic_df = pd.read_csv('./titanic/train.csv')
+indexes = titanic_df.index
+print(indexes)
+print('1.---------------------------------------------------')
+print('Index 객체 array값:\n',indexes.values)
+print('2.---------------------------------------------------')
+print(type(indexes.values))
+print(indexes.values.shape)
+print(indexes[:5].values)
+print(indexes.values[:5])
+print(indexes[5])
+print('3.---------------------------------------------------')
+series_fair = titanic_df['Fare']
+print(series_fair)
+print('Fair Series max 값:', series_fair.max())
+print('Fair Series sum 값:', series_fair.sum())
+print('sum() Fair Series:', sum(series_fair))
+print('Fair Series + 3:\n',(series_fair + 3).head(3) )
+print('4.---------------------------------------------------')
+titanic_reset_df = titanic_df.reset_index(inplace=False)
+print(titanic_reset_df.head(3))
+print('5.---------------------------------------------------')
+print('### before reset_index ###')
+value_counts = titanic_df['Pclass'].value_counts()
+print(value_counts)
+print('value_counts 객체 변수 타입:',type(value_counts))
+
+new_value_counts = value_counts.reset_index(inplace=False)
+print('### After reset_index ###')
+print(new_value_counts)
+print('new_value_counts 객체 변수 타입:',type(new_value_counts))
+
+
+# -----------
+# 실습 예제 5
+# -----------
+import pandas as pd
+
+titanic_df = pd.read_csv('./titanic/train.csv')
+
+print('단일 컬럼 데이터 추출:\n', titanic_df[ 'Pclass' ].head(3))
+print('1.---------------------------------------------------')
+print('\n여러 컬럼들의 데이터 추출:\n', titanic_df[ ['Survived', 'Pclass'] ].head(3))
+print('2.---------------------------------------------------')
+print(titanic_df[0:2])
+print('3.---------------------------------------------------')
+print(titanic_df[ titanic_df['Pclass'] == 3].head(3))
+print('4.---------------------------------------------------')
+
+data = {'Name': ['Chulmin', 'Eunkyung','Jinwoong','Soobeom'],
+        'Year': [2011, 2016, 2015, 2015],
+        'Gender': ['Male', 'Female', 'Male', 'Male']
+       }
+data_df = pd.DataFrame(data, index=['one','two','three','four'])
+print(data_df)
+print('5.---------------------------------------------------')
+
+data_df_reset = data_df.reset_index()
+print(data_df_reset)
+print('6.---------------------------------------------------')
+data_df_reset = data_df_reset.rename(columns={'index':'old_index'})
+
+data_df_reset.index = data_df_reset.index+1
+print(data_df_reset)
+print('7.---------------------------------------------------')
+
+print(data_df.iloc[0, 0])  
+print(data_df_reset.iloc[0, 1]) 
+print('8.---------------------------------------------------')
+
+print(data_df.loc['one', 'Name']) 
+print(data_df_reset.loc[1, 'Name'])
+print('9.---------------------------------------------------')
+print('위치기반 iloc slicing\n', data_df.iloc[0:2, 0],'\n')
+print('명칭기반 loc slicing\n', data_df.loc['one':'two', 'Name'])
+print(data_df_reset.loc[1:2 , 'Name'])
+print('10.---------------------------------------------------')
+
+titanic_df = pd.read_csv('titanic_train.csv')
+titanic_boolean = titanic_df[titanic_df['Age'] > 60] 
+print(type(titanic_boolean))
+print(titanic_boolean)
+print('11.---------------------------------------------------')
+print(titanic_df[titanic_df['Age'] > 60][['Name','Age']].head(3))
+print('12.---------------------------------------------------')
+print(titanic_df.loc[titanic_df['Age'] > 60, ['Name','Age']].head(3))
+print('13.---------------------------------------------------')
+print(titanic_df[ (titanic_df['Age'] > 60) & (titanic_df['Pclass']==1) & (titanic_df['Sex']=='female')])
+print('14.---------------------------------------------------')
+cond1 = titanic_df['Age'] > 60
+cond2 = titanic_df['Pclass']==1
+cond3 = titanic_df['Sex']=='female'
+print(titanic_df[ cond1 & cond2 & cond3])
+
+
+# -----------
+# 실습 예제 6
+# -----------
+import pandas as pd
+
+#titanic_df = pd.read_csv('titanic_train.csv')
+titanic_df = pd.read_csv('./titanic/train.csv')
+
+titanic_sorted = titanic_df.sort_values(by=['Name'], ascending=True)
+print(titanic_sorted.head(3))
+print('1.---------------------------------------------------')
+titanic_sorted = titanic_df.sort_values(by=['Pclass', 'Name'], ascending=False)
+print(titanic_sorted.head(3))
+print('2.---------------------------------------------------')
+print(titanic_df.count())
+print('3.---------------------------------------------------')
+print(titanic_df[['Age', 'Fare']].mean()) # 평균
+print('4.---------------------------------------------------')
+titanic_groupby = titanic_df.groupby(by='Pclass')
+print(type(titanic_groupby))
+print('5.---------------------------------------------------')
+titanic_groupby = titanic_df.groupby('Pclass').count()
+print(titanic_groupby)
+print('6.---------------------------------------------------')
+titanic_groupby = titanic_df.groupby('Pclass')[['PassengerId', 'Survived']].count()
+print(titanic_groupby)
+print('7.---------------------------------------------------')
+print(titanic_df.groupby('Pclass')['Age'].agg([max, min]))
+print('8.---------------------------------------------------')
+agg_format={'Age':'max', 'SibSp':'sum', 'Fare':'mean'}
+print(titanic_df.groupby('Pclass').agg(agg_format))
+
+
+# -----------
+# 실습 예제 7
+# -----------
+
+import pandas as pd
+
+titanic_df = pd.read_csv('./titanic/train.csv')
+
+print(titanic_df.isna().head(3))
+print('1.---------------------------------------------------')
+print(titanic_df.isna( ).sum( )) # 결손데이터 각 열(컬럼)별 합계
+print('2.---------------------------------------------------')
+titanic_df['Cabin'] = titanic_df['Cabin'].fillna('C000')
+print(titanic_df.head(3))
+print('3.---------------------------------------------------')
+titanic_df['Age'] = titanic_df['Age'].fillna(titanic_df['Age'].mean())
+titanic_df['Embarked'] = titanic_df['Embarked'].fillna('S')
+print(titanic_df.isna().sum())
+
+
+# -----------
+# 실습 예제 8
+# -----------
+
+import pandas as pd
+
+titanic_df = pd.read_csv('./titanic/train.csv')
+
+def get_square(a):
+    return a**2
+
+print('3의 제곱은:',get_square(3))
+print('1.---------------------------------------------------')
+lambda_square = lambda x : x ** 2
+print('3의 제곱은:',lambda_square(3))
+print('2.---------------------------------------------------')
+a=[1,2,3]
+squares = map(lambda x : x**2, a)
+print(list(squares)) # list(squares) : squares를 리스트 타입으로 캐스트 연산
+print('3.---------------------------------------------------')
+titanic_df['Name_len']= titanic_df['Name'].apply(lambda x : len(x))
+print(titanic_df[['Name','Name_len']].head(3))
+print('4.---------------------------------------------------')
+titanic_df['Child_Adult'] = titanic_df['Age'].apply(lambda x : 'Child' if x <=15 else 'Adult' )
+print(titanic_df[['Age','Child_Adult']].head(8))
+print('5.---------------------------------------------------')
+titanic_df['Age_cat'] = titanic_df['Age'].apply(lambda x : 'Child' if x<=15 else ('Adult' if x <= 60 else 'Elderly'))
+print(titanic_df['Age_cat'].value_counts())
+print('6.---------------------------------------------------')
+
+
+def get_category(age):
+    cat = ''
+    if age <= 5:
+        cat = 'Baby'
+    elif age <= 12:
+        cat = 'Child'
+    elif age <= 18:
+        cat = 'Teenager'
+    elif age <= 25:
+        cat = 'Student'
+    elif age <= 35:
+        cat = 'Young Adult'
+    elif age <= 60:
+        cat = 'Adult'
+    else:
+        cat = 'Elderly'
+
+    return cat
+
+
+titanic_df['Age_cat'] = titanic_df['Age'].apply(lambda x: get_category(x))
+print(titanic_df[['Age', 'Age_cat']].head())

@@ -1,0 +1,15 @@
+{
+    "snapshot": {
+        "repos": "test.com/repositories/snapshots",
+        "id": "hhj",
+        "pw": "1210"
+    },
+    "release": {
+        "repos": "test.com/repositories/release",
+        "id": "han",
+        "pw": "1210"
+    },
+    "component": {
+        "test": "test.com"
+    }
+}

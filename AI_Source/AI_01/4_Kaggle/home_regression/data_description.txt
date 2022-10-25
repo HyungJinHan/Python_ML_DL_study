@@ -1,0 +1,30 @@
+Acknowledgements
+ 이 데이터는 인터넷 사이트를 통해 직접 수집된 데이터입니다.
+ ML을 이용해 집 가격을 예측하는 모델을 완성해보세요.
+
+File descriptions
+ train.csv - the training set
+ test.csv - the test set
+ sampleSubmission.csv - a sample submission file in the correct format
+
+Data fields
+ ID - 각 집의 고유한 번호
+ ADDRESS - 집의 주소
+ SUBURB - 동네 이름
+ PRICE - 가격
+ BEDROOMS - 침실의 갯수
+ BATHROOMS - 욕실의 갯수
+ GARAGE - 차고의 수
+ LAND_AREA - 토지 면적
+ FLOOR_AREA - 건물 면적
+ BUILD_YEAR - 건축년도
+ CBD_DIST - Central business district까지의 거리
+ NEAREST_STN - 근처 역 정보
+ NEAREST_STN_DIST - 근처 역까지 거리
+ DATE_SOLD - 판매된 날짜
+ POSTCODE - 우편번호
+ LATITUDE - 위도
+ LONGITUDE - 경도
+ NEAREST_SCH - 근교의 학교
+ NEAREST_SCH_DIST - 근교의 학교까지의 거리
+ NEAREST_SCH_RANK - 근교의 학교까지의 랭킹

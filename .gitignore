@@ -1,0 +1,19 @@
+__pycache__/
+
+.ipynb_checkpoints/
+
+.idea/
+
+# venv/
+
+AI_Source/AI_01/6_1.OpenCV/OpenPose/file/
+
+OpenCV/
+
+ML/
+
+DL/
+
+AI_Source/AI_01/6_DeepLearning/Mnist_test/
+
+AI_Source/AI_01/6_DeepLearning/source/
