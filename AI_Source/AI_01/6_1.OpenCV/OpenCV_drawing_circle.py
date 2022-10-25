@@ -18,6 +18,5 @@ cv2.ellipse(src, (350, 425), (50, 75), 45, 0, 180, (0, 0, 255))
 cv2.ellipse(src, (400, 425), (50, 75), 45, 181, 360, (255, 0, 0))
 
 cv2.imshow('circle', src)
-
 cv2.waitKey(0)
 cv2.destroyAllWindows()

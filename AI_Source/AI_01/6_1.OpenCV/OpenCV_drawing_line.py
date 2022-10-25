@@ -16,6 +16,6 @@ cv2.line(src, (100, 400), (400, 450), (0, 0, 255), 20, cv2.LINE_8)
 cv2.line(src, (100, 450), (400, 500), (0, 0, 255), 20, cv2.LINE_AA)
 cv2.line(src, (0, 0), (500, 500), (0, 0, 255))
 
-cv2.imshow('lines', src)
+cv2.imshow('line', src)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

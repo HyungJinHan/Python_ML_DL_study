@@ -14,6 +14,5 @@ cv2.polylines(src, [pts3], True, (0, 0, 255), 10)
 cv2.polylines(src, [pts4], True, (0, 0, 0))
 
 cv2.imshow('polyline', src)
-
 cv2.waitKey(0)
 cv2.destroyAllWindows()
