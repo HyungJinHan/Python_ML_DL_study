@@ -22,7 +22,7 @@ BODY_PARTS = {
 }
 
 POSE_PAIRS = [
-  # ['Head', 'Neck'],
+  ['Head', 'Neck'],
   ['Neck', 'RShoulder'],
   ['RShoulder', 'RElbow'],
   ['RElbow', 'RWrist'],
@@ -42,8 +42,8 @@ POSE_PAIRS = [
 
 # 각 파일 path
 BASE_DIR = Path(__file__).resolve().parent
-protoFile = str(BASE_DIR) + '../../../OpenCV/file/pose_deploy_linevec_faster_4_stages.prototxt'
-weightsFile = str(BASE_DIR) + '../../../OpenCV/file/pose_iter_160000.caffemodel'
+protoFile = 'C:/Users/han12/OneDrive/Desktop/AIschool/Python_ML_DL_study/OpenCV/file/pose_deploy_linevec_faster_4_stages.prototxt'
+weightsFile = 'C:/Users/han12/OneDrive/Desktop/AIschool/Python_ML_DL_study/OpenCV/file/pose_iter_160000.caffemodel'
 
 # 위의 path에 있는 network 모델 불러오기
 net = cv2.dnn.readNetFromCaffe(protoFile, weightsFile)
